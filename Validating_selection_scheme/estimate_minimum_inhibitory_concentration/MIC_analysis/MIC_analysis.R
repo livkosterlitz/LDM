@@ -9,63 +9,71 @@ library(grid)
 library(egg)
 theme_set(theme_cowplot())
 
-dat <- read.csv("recorded_density_plating.csv")
+dat <- read.csv("recorded_MIC_data.csv")
 
 dat <- dat %>%
-  group_by(Strain, Time) %>%
+  group_by(Name, Plate, Drug) %>%
   summarise(N = n(),
-            CFUs = mean(Density),
-            SD = sd(Density),
-            SE = SD/sqrt(N))
+            Conc = mean(Concentration))
 
-dat$Strain <- factor(dat$Strain)
-levels(dat$Strain)
+dat$Name <- factor(dat$Name)
+dat$Name <- factor(dat$Name, levels = c("Donor", "Recipient", "Mating"))
+levels(dat$Name)
 
-colors_light <- c('firebrick1', 'blue2')
+colors_light <- c('firebrick1', 'blue2', 'darkorchid2')
 
-p1 <- ggplot(dat, aes(x=Time, y=CFUs, color=Strain)) + 
-  geom_line(linetype = "dashed", size = 0.4668623442372146) +
-  geom_errorbar(aes(ymin=CFUs-SE, ymax=CFUs+SE), width=0, size = 0.4668623442372146) +
-  geom_point(aes(shape=Strain, color=Strain, fill=Strain, size=Strain)) +
+p1 <- ggplot(dat %>% filter(Drug=='Tet'),
+  aes(x = Name, y=Conc, color = Name, fill = Name))+ 
+  geom_bar(stat = "identity")+
   scale_color_manual(values=colors_light) +
-  scale_fill_manual(values=colors_light)+
-  scale_size_manual(values=c(2,1.5,1.5,3))+
-  scale_shape_manual(values=c(16,25,24,18)) +
-  scale_y_log10(limits=c(min(dat$CFUs), 1e9),
-                breaks=10^seq(0, 9, by=1),
-                labels=seq(0, 9, by=1)) +
+  scale_fill_manual(values=colors_light) +
+  scale_y_continuous(trans = "log2",
+                     breaks=2^seq(0, (max(dat$Conc)/2), by=2)) +
   theme(legend.position="none") +
   theme(axis.title.x=element_blank()) +
   theme(axis.title.y=element_blank()) +
-  theme(axis.line.y = element_line(size = 0.3734899)) +
-  theme(axis.line.x = element_line(size = 0.3734899)) +
-  theme(axis.ticks = element_line(size = 0.3734899))+
-  theme(axis.text.x = element_text(margin=margin(1,0,0,0,"pt")),
-        axis.text.y = element_text(margin=margin(0,1,0,0,"pt")))+
-  theme(axis.ticks.length=unit(.025, "in"))+
-  theme(plot.margin = margin(.2, 0, 0, .05, "in"))+
-  expand_limits(x = 0, y = 0) +
-  theme(axis.text = element_text(size = 8))
-
+  facet_wrap(~ Plate) +
+  theme(axis.text = element_text(size = 8)) +
+  theme(strip.text.x = element_text(size = 8)) + 
+  geom_hline(yintercept=7.5, linetype="solid", color = "firebrick1") +
+  geom_hline(yintercept=60, linetype="dashed", color = "firebrick1")
 p1
 
-Figp1_fixed <- set_panel_size(p1, width  = unit(2, "in"), height = unit(1.35, "in"))
 
-Figure_main <- plot_grid(Figp1_fixed)
+p2 <- ggplot(dat %>% filter(Drug=='Str'),
+             aes(x = Name, y=Conc, color = Name, fill = Name))+ 
+  geom_bar(stat = "identity")+
+  scale_color_manual(values=colors_light) +
+  scale_fill_manual(values=colors_light) +
+  scale_y_continuous(trans = "log2",
+                     breaks=2^seq(0, (max(dat$Conc)/2), by=2)) +
+  theme(legend.position="none") +
+  theme(axis.title.x=element_blank()) +
+  theme(axis.title.y=element_blank()) +
+  facet_wrap(~ Plate) +
+  theme(axis.text = element_text(size = 8)) +
+  theme(strip.text.x = element_text(size = 8)) + 
+  geom_hline(yintercept=25, linetype="solid", color = "blue2") +
+  geom_hline(yintercept=200, linetype="dashed", color = "blue2")
+p2
+
+Figp1_fixed <- set_panel_size(p1, width  = unit(2, "in"), height = unit(2, "in"))
+Figp2_fixed <- set_panel_size(p2, width  = unit(2, "in"), height = unit(2, "in"))
+
+tet.y.grob <- textGrob("Tet drug concentration (ug/ml)",
+                   gp=gpar(fontsize=10), rot=90)
+
+str.y.grob <- textGrob("Str drug concentration (ug/ml)",
+                       gp=gpar(fontsize=10), rot=90)
+
+Figp1_fixed <- grid.arrange(arrangeGrob(Figp1_fixed, left = tet.y.grob))
+Figp2_fixed <- grid.arrange(arrangeGrob(Figp2_fixed, left = str.y.grob))
+
+Figure_main <- plot_grid(Figp1_fixed, Figp2_fixed, ncol = 1, align = "v")
 
 Figure_main
 
-#create common x and y labels
 
-y.grob <- textGrob("cell density \n [log [(CFUs/mL)+1)]]",
-                   gp=gpar(fontsize=10), rot=90)
-
-x.grob <- textGrob("Time (day)", 
-                   gp=gpar(fontsize=10))
-
-#add common axis to plot
-
-Figure <- grid.arrange(arrangeGrob(Figure_main, left = y.grob, bottom = x.grob))
-
-save_plot("Growth_curve_figure.pdf", plot = Figure, base_width = 2.7, base_height = 2)
+save_plot("MIC_figure.pdf", plot = Figure_main
+          , base_width = 5, base_height = 6)
 
