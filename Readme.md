@@ -13,14 +13,8 @@ Repository for all raw data, calculations, codes, derivations, and final figures
 Digital experiments used to inspire feasible protocol designs and validate experimental data results. Instructions for how to designate parameters according to experimental setup using replication of strains tested in publication can also be found here. Instruction for how to customize for individual strains of interest also found included. Link: [Simulations](https://github.com/livkosterlitz/LDM/tree/main/Simulations)
 
 ## **GitHub Appendix**
-Liv is going to attach some very impressive and smart code-y things that will inspire awe and appreciation for the hours of work poured into this paper and website. I completely forgot what is going in the GitHub appendix or what its purpose is. But I can link it.  Link: [GitHub_Appendix](https://github.com/livkosterlitz/LDM/tree/main/Github_Appendix)
+Liv is going to attach some very impressive and smart code-y things that will inspire awe and appreciation for the hours of work poured into this paper and website. I completely forgot what is going in the GitHub appendix or what its purpose is. But I can link it.  Link: [GitHub Appendix](https://github.com/livkosterlitz/LDM/tree/main/Github_Appendix)
 
 
 _____________________________________________
 
-* Here's how to insert an image: <img src="https://github.com/livkosterlitz/LDMprotocol/blob/main/Misc.%20Images/Screen%20Shot%202022-01-17%20at%2011.47.58%20PM.png" width="55" height="17"> 
-* Example: [example CSV output]()  
-* _Italics_
-<this> indicates something to link to (usually a folder above), but Protocol should directly link to Wiki
-  
-  Need to Add (CW): fix spacing issues between paragraph styles, write more concise/approachable descritpion? (ie: Includes: _____, ______, element, etc)
