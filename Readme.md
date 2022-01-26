@@ -1,6 +1,6 @@
 # Navigating This Page 
 
-This page was created to accompany the publication of **_Estimating the rate of plasmid transfer with an adapted Luria–Delbrück fluctuation analysis and a case study on the evolution of plasmid transfer rate_** by Kosterlitz et. al. We aim to provide a consolidated and accessible way of viewing the data, figures, and protocol steps as outlined in the paper. 
+This page was created to accompany the publication of **_Estimating the rate of plasmid transfer with an adapted Luria–Delbrück fluctuation analysis_** by Kosterlitz et. al. We aim to provide a consolidated and accessible way of viewing the data, figures, and protocol steps as outlined in the paper. 
 _________________________________________
 ## **LDM Protocol**  
 Detailed steps are outlined and accompanied by visuals to outline the necessary phases of the protocol and their relevance in confirming results before proceeding with experiments. Video tutorial to proivde visual walkthrough of protocol steps can also be found here (coming soon). 
