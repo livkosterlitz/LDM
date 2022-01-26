@@ -16,5 +16,5 @@ Digital experiments used to inspire feasible protocol designs and validate exper
 Liv is going to attach some very impressive and smart code-y things that will inspire awe and appreciation for the hours of work poured into this paper and website. I completely forgot what is going in the GitHub appendix or what its purpose is. But I can link it.  Link: [GitHub Appendix](https://github.com/livkosterlitz/LDM/tree/main/Github_Appendix)
 
 
-_____________________________________________
+
 
