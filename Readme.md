@@ -10,10 +10,10 @@ Repository for all raw data, calculations, codes, derivations, and final figures
   > **NOTE:** Any additional raw data, codes or figures not included in the paper or supplement can be found under [Supporting Data](https://github.com/livkosterlitz/LDM/tree/main/Supporting_data).  
 
 ## **Simulations**
-Digital experiments used to inspire feasible protocol designs and validate experimental data results. Instructions for how to designate parameters according to experimental setup using replication of strains tested in publication can also be found here. Instruction for how to customize for individual strains of interest also found included. Link: [Simulations](https://github.com/livkosterlitz/LDM/tree/main/Simulations)
+ Link: [Simulations](https://github.com/livkosterlitz/LDM/tree/main/Simulations)
 
 ## **GitHub Appendix**
-Liv is going to attach some very impressive and smart code-y things that will inspire awe and appreciation for the hours of work poured into this paper and website. I completely forgot what is going in the GitHub appendix or what its purpose is. But I can link it.  Link: [GitHub Appendix](https://github.com/livkosterlitz/LDM/tree/main/Github_Appendix)
+ Link: [GitHub Appendix](https://github.com/livkosterlitz/LDM/tree/main/Github_Appendix)
 
 
 
