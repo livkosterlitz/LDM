@@ -1,4 +1,4 @@
-These programs create a stochastic simulation framework for modeling bacterial population dynamics to calculate conjugation rates. Given the amount of intermediate files generated, we did not deposit all of the files for each treatment used in the manuscript. However, we do include all of the files generated from [Step 3](#Step-3) for each treatment in the [Output_folder]() and a CSV file describing all of the various simulation parameters [Treatment_master.csv](). 
+These programs create a stochastic simulation framework for modeling bacterial population dynamics to calculate conjugation rates. Given the amount of intermediate files generated, we did not deposit all of the files for each treatment used in the manuscript. However, we do include all of the files generated from [Step 3](#Step-3) for each treatment in the [Step3_output folder]() and a CSV file describing all of the various simulation parameters [Treatment_master.csv](). 
 
 # The plasmid population model 
 
