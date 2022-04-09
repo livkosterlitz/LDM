@@ -1,0 +1,2 @@
+,Treatment_ID,psiD,psiR,psiT,psiF,gammaDR,gammaTR,gammaDF,gammaTF,tauD,tauT,D_0,R_0,T_0,F_0,Cutoff_I1,Cutoff_I2,Num_sims_I1,Num_sims_I2,Num_of_experiments,Cutoff_I1_t,Cutoff_I2_t
+0,T1,1,1,1,1,1e-06,1e-06,1e-06,1e-06,0,0,100.0,100.0,0,0,1000000.0,100.0,1,10,5,8.517222222222221,4.610277777777778
