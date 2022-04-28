@@ -42,10 +42,10 @@ from gillespy2 import ODESolver
 from SimFunctions import *
 
 #troubleshooting 
-# from GitHub.Programs.SimFunctions import *
-# SimRun_path = "SimRun.py"
-# input_CSV = "/Users/oliviakosterlitz/Dropbox/Pop3/Simulations/Submission/GitHub/BasicRun/Treatments/SimSetup_inputCSV_example.csv"           
-# output_folder = "/Users/oliviakosterlitz/Dropbox/Pop3/Simulations/Submission/GitHub/BasicRun/"
+#from GitHub.Programs.SimFunctions import *
+#SimRun_path = "/Users/oliviakosterlitz/Dropbox/Pop3/GitHub/Simulations/Programs/SimRun.py"
+#input_CSV = "/Users/oliviakosterlitz/Dropbox/Pop3/Simulations/Submission/Treatments/Treatments_master_var.csv"
+#output_folder = "/Users/oliviakosterlitz/Dropbox/Pop3/Simulations/Submission/Output/"
 
 parser = argparse.ArgumentParser(
          description = script_description,
@@ -103,10 +103,10 @@ for i in range(len(df['Treatment_ID'])):
     tauT_sec=rate_hourtosecond(tauT)
     
     # initial densities    
-    D_0=df['D_0'][i]
-    R_0=df['R_0'][i]
-    T_0=df['T_0'][i]
-    F_0=df['F_0'][i]
+    D_0=float(df['D_0'][i])
+    R_0=float(df['R_0'][i])
+    T_0=float(df['T_0'][i])
+    F_0=float(df['F_0'][i])
     
     # the ODE population density that determines the incubation time decisions
     Pop_size_cutoff = df['Cutoff_I1'][i]
@@ -200,7 +200,7 @@ for i in range(len(df['Treatment_ID'])):
         for t in range(df['Num_sims_I2'][i]):
             incubation = "I2" # used to be IS for short incubation
             shell_line (SimRun_path, df, f, i, e, incubation, t)
-
+        
     f.close()
     
 

@@ -202,6 +202,16 @@ def LDMmetric (runtime, p0, D_0, R_0, D_t, R_t):
     LDM_gamma_estimate=num/den
     return(LDM_gamma_estimate)   
 
+def correctedLDMmetric(D_0, R_0, psiD, psiR, psiT, runtime, pi, Pnt):
+    import scipy.stats
+    import numpy as np
+    factor1 = (-np.log(Pnt)*(psiD+psiR))/(D_0*R_0)
+    factor1_den = np.exp((psiD+psiR)*runtime)
+    factor2_den = scipy.special.hyp2f1(1, (psiD+psiR)/psiT, 1 + ((psiD+psiR)/psiT), pi/(pi-1))
+    factor3_den = scipy.special.hyp2f1(1, (psiD+psiR)/psiT, 1 + ((psiD+psiR)/psiT), (pi/(pi-1))*np.exp(-psiT*runtime))
+    LDM = factor1 * (1/(factor1_den * factor2_den - factor3_den))
+    return(LDM)
+
 # Calculates SIM conjugation rate
 def SIMmetric (runtime, N_0, N_t, D_t, R_t, T_t):
     SIM_gamma_estimates=((np.log(N_t/N_0)/runtime)*(np.log(1+(N_t*T_t)/(R_t * D_t))) * (1/(N_t - N_0)))
@@ -267,7 +277,7 @@ def to_csv_custom(data, nametag=None):
       directory = os.getcwd()
       
       # multiple trajectories
-      if isinsgreyce(data.data, list):
+      if isinstance(data.data, list):
           for i, trajectory in enumerate(data.data):  # write each CSV file
               filename = os.path.join(directory, str(identifier) +".csv")
               field_names = []
@@ -283,7 +293,6 @@ def to_csv_custom(data, nametag=None):
                       csv_writer.writerow(this_line)  
     
  
-
 
 
 
