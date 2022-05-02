@@ -1,6 +1,6 @@
 ﻿Treatment_ID,Relevant Figure,Notes,psiD,psiR,psiT,psiF,gammaDR,gammaTR,gammaDF,gammaTF,tauD,tauT,D_0,R_0,T_0,F_0,Cutoff_I1,Cutoff_I2,Num_sims_I1,Num_sims_I2,Num_sims_I3,Num_of_experiments,Extinction_probability
 T1,SI Fig 5,BaseCase w/ 'realistic' parameters,1,1,1,1,1.00E-14,1.00E-14,1.00E-14,1.00E-14,0,0,1.00E+05,1.00E+05,0,0,1.00E+09,1.00E+02,1,100,1,100,0
 T1,,Plating plus no extinction probability,1,1,1,1,1.00E-14,1.00E-14,1.00E-14,1.00E-14,0,0,1.00E+05,1.00E+05,0,0,1.00E+09,1.00E+02,1,100,1,100,0
-T1,,Plating plus 0.5 extinction probability,1,1,1,1,1.00E-14,1.00E-14,1.00E-14,1.00E-14,0,0,1.00E+05,1.00E+05,0,0,1.00E+09,1.00E+02,1,100,1,100,0
-T1,,Plating plus 0.9 extinction probability,1,1,1,1,1.00E-14,1.00E-14,1.00E-14,1.00E-14,0,0,1.00E+05,1.00E+05,0,0,1.00E+09,1.00E+02,1,100,1,100,0
-T1,,Plating plus 0.99 extinction probability,1,1,1,1,1.00E-14,1.00E-14,1.00E-14,1.00E-14,0,0,1.00E+05,1.00E+05,0,0,1.00E+09,1.00E+02,1,100,1,100,0
+T1,,Plating plus 0.5 extinction probability,1,1,1,1,1.00E-14,1.00E-14,1.00E-14,1.00E-14,0,0,1.00E+05,1.00E+05,0,0,1.00E+09,1.00E+02,1,100,1,100,0.5
+T1,,Plating plus 0.9 extinction probability,1,1,1,1,1.00E-14,1.00E-14,1.00E-14,1.00E-14,0,0,1.00E+05,1.00E+05,0,0,1.00E+09,1.00E+02,1,100,1,100,0.9
+T1,,Plating plus 0.99 extinction probability,1,1,1,1,1.00E-14,1.00E-14,1.00E-14,1.00E-14,0,0,1.00E+05,1.00E+05,0,0,1.00E+09,1.00E+02,1,100,1,100,0.99
