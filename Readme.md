@@ -1,20 +1,18 @@
-# Navigating This Page 
+# Navigating the repository
 
-This page was created to accompany the publication of **_Estimating the rate of plasmid transfer with an adapted Luria–Delbrück fluctuation analysis_** by Kosterlitz et. al. We aim to provide a consolidated and accessible way of viewing the data, figures, and protocol steps as outlined in the paper. 
+This repository accompanies the publication of **_Estimating the rate of plasmid transfer with an adapted Luria–Delbrück fluctuation analysis_** by Kosterlitz et. al. to provide a consolidated and accessible way of viewing the source data, figures, and custom programs. 
 _________________________________________
-## **LDM Protocol**  
-Detailed steps are outlined and accompanied by visuals to outline the necessary phases of the protocol and their relevance in confirming results before proceeding with experiments. Video tutorial to proivde visual walkthrough of protocol steps can also be found here (coming soon). 
-Link: [LDM Protocol Wiki](https://github.com/livkosterlitz/LDM/wiki/Welcome-to-the-LDM-Protocol-Wiki!) 
 ## **Data and Figures** 
-Repository for all raw data, calculations, codes, derivations, and final figures includued in the publication. Refer to figure number as ordered in the paper to access associated data and material. Link: [Figures](https://github.com/livkosterlitz/LDM/tree/main/Figures)
-  > **NOTE:** Any additional raw data, codes or figures not included in the paper or supplement can be found under [Supporting Data](https://github.com/livkosterlitz/LDM/tree/main/Supporting_data).  
+The [Figures folder](https://github.com/livkosterlitz/LDM/tree/main/Figures) contains all the raw data, calculations, codes, and final figures includued in the publication. Refer to the figure numbers as ordered in the paper to access associated data and material.
 
 ## **Simulations**
-The code, workflow, and the analyzed data generated from the Gillespie stochastic simulations can be found in the [Simulations](https://github.com/livkosterlitz/LDM/tree/main/Simulations) folder. 
+The [Simulations folder](https://github.com/livkosterlitz/LDM/tree/main/Simulations) folder contains the code, workflow, and data generated from the Gillespie stochastic simulations.
 
 ## **GitHub Appendix**
- Link: [GitHub Appendix](https://github.com/livkosterlitz/LDM/tree/main/Github_Appendix)
+The [GitHub appendix](https://github.com/livkosterlitz/LDM/tree/main/Github_Appendix) is available as a PDF file and contains the additional derivations mentioned in the supplemental materials. 
 
+## **LDM Protocol**  
+A detailed protocol on how to execute the LDM approach is available on [protocols.io]().
 
 
 
