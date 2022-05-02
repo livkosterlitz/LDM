@@ -15,9 +15,9 @@ These programs estimate conjugation rate with 2 metrics:
 | Step 2 | `SimRun.py` | No change. |
 | [Step 3](#Step-3) | `SimAnalysisEstablishment.py` | New functions incorporated to add in the two sources of stochasticity.  |
 
-## <a name="Step-1"></a> **Step 1** `SimSetup.py`
+## <a name="Step-1"></a> **Step 1** `SimSetupEstablishment.py`
 
-Since the general formula of the LDM estiamte that incorporates non-zero extinction probabilities has different requirements, there is a new incubation option added.
+Since the general formula of the LDM estimate that incorporates non-zero extinction probabilities has different requirements, there is a new incubation option added.
  
 * I3: The transconjugant density increases until a user-specified population density is reached. The same incubation time is used for I3 that is selected for I1. 
 
@@ -29,7 +29,7 @@ Since the general formula of the LDM estiamte that incorporates non-zero extinct
 | Num_sims_I3 | 1 | number of simulations with I1 incubation condition. By default, this should match the number of I1 simulations. |
 | Extinction_probability| 0.25 | Extinction probability for the donor, recipient and transconjugant cell types.|
 
-## <a name="Step-3"></a> **Step 3**  `SimAnalysis.py`
+## <a name="Step-3"></a> **Step 3**  `SimAnalysisEstablishment.py`
 
 This script adds in the two sources of stochasticity before calculating the conjugation rate.
 * Each estimate of population density goes through dilution plating. This uses the scipy package in python and the poisson distribution by setting the mean to the 'actual' population density generate in Step 2 by the Gillespie algorithm. 
