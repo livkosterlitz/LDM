@@ -1,0 +1,193 @@
+# Notes ----------------------------------------------------------
+# 2021-12-15 the density y-axis label does not have the unit in it (CFU ml^-1)
+
+
+# Packages ----------------------------------------------------------
+library(tidyverse)
+library(cowplot)
+library(egg)
+library(grid)
+theme_set(theme_cowplot())
+
+# Plot filtering ----------------------------------------------------------
+Incubation_time = 9.25 # The max incubation time for the x-axis
+Set_conjugation_rate = 1e-14 # The simulated conjugation rate
+num_of_rows_to_skip = 500 # This skips datapoints so that the ggplot linetypes will work
+
+# General plotting customization -------------------------------------------------
+Figure_height = 2.1
+Figure_width = 3
+Figure_label_size = 10
+plot_width = 1
+text_size_axis_title = 8
+text_size_axis_tick_labels = 8
+axis_line_size = 0.75/(ggplot2::.pt*72.27/96) # pt size for the axis lines
+axis_tick_size = 0.75/(ggplot2::.pt*72.27/96)
+axis_tick_lengths = 0.03
+x_axis_min = 0
+x_axis_max = Incubation_time
+x_axis_breaks = c(0,3,6,9)
+x_axis_label = "Time (hrs)"
+
+# Density plotting customization -------------------------------------------------
+density_cell_colors <- c('firebrick1', 'blue2', 'darkorchid2') # the line colors for donor, recipient, and transconjugant trajectories
+density_linetype = 'solid' # the linetype used to plot the density trajectories
+density_line_size = 1/(ggplot2::.pt*72.27/96) # pt size for the density trajectories
+density_line_dodge = 2 # to jitter the overlapping density trajectories
+density_y_axis_min = 1
+density_y_axis_max = 1e9
+density_y_axis_number_of_ticks = 4
+density_height = 1
+density_y_axis_label = "Cell density"
+
+# SIM plotting customization -------------------------------------------------
+SIM_set_conjugation_rate_color = 'darkgrey'
+SIM_set_conjugation_rate_linetype = 'dashed'
+SIM_set_conjugation_rate_line_size = 1/(ggplot2::.pt*72.27/96)
+SIM_line_size = 1/(ggplot2::.pt*72.27/96)
+SIM_line_color = 'darkorange'
+SIM_y_axis_number_of_ticks = 3
+SIM_y_axis_min = 1e-15
+SIM_y_axis_max = 1e-10
+SIM_height = 0.5
+SIM_y_axis_label = 'SIM estimate'
+
+# Unequal conjugation rates data --------------------------------------------
+dat <- read.csv("ODE_data/T55.csv")
+T_1 = (dat$time[dat$Transconjugant>1]/3600)[1]
+dat2 <- dat %>%
+  filter(row_number() %% num_of_rows_to_skip == 1)
+dat1 <- dat2 %>%
+  select(-PlasmidFreeDonor, -Total) %>%
+  gather(Cell.type, Density, 2:4)
+dat1$time <- dat1$time/3600
+
+# a. Density plot ------------------------------------------------------------
+p2 <- ggplot(data = dat1 %>% filter(time < Incubation_time), aes(x = time, y = Density, color = Cell.type)) +
+  geom_line(size = density_line_size, linetype = density_linetype, position=position_dodge(width = density_line_dodge)) +
+  scale_color_manual(values = density_cell_colors) +
+  scale_x_continuous(limits = c(x_axis_min, x_axis_max), breaks = x_axis_breaks)+
+  scale_y_log10(limits = c(density_y_axis_min, density_y_axis_max), breaks = scales::trans_breaks("log10", function(x) 10^x, n = density_y_axis_number_of_ticks), labels = scales::trans_format("log10", scales::math_format(10^.x))) +
+  ylab(density_y_axis_label) + 
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title = element_text(size = text_size_axis_title)) +
+  theme(axis.line.y = element_line(size = axis_line_size)) +
+  theme(axis.line.x = element_line(size = axis_line_size)) +
+  theme(axis.ticks = element_line(size = axis_tick_size))+
+  theme(axis.ticks.length = unit(axis_tick_lengths, 'in'))+
+  theme(axis.text.y = element_text(size = text_size_axis_tick_labels))+
+  theme(axis.text.x = element_blank()) +
+  theme(legend.position = "none")   
+p2
+
+# b. SIM estimate plot ------------------------------------------------------------
+p2_SIM <- ggplot(data = dat1 %>% filter(time < Incubation_time & time > T_1), aes(x = time, y = SIM)) +
+  geom_hline(yintercept = Set_conjugation_rate, color = SIM_set_conjugation_rate_color, linetype = SIM_set_conjugation_rate_linetype, size = SIM_set_conjugation_rate_line_size) +
+  geom_line(size = SIM_line_size, color = SIM_line_color) +
+  scale_x_continuous(limits = c(x_axis_min, x_axis_max), breaks = x_axis_breaks)+
+  scale_y_log10(limits=c(SIM_y_axis_min, SIM_y_axis_max), breaks = scales::trans_breaks("log10", function(x) 10^x, n = SIM_y_axis_number_of_ticks), labels = scales::trans_format("log10", scales::math_format(10^.x))) +
+  ylab(SIM_y_axis_label) + 
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title = element_text(size = text_size_axis_title)) +
+  theme(axis.line.y = element_line(size = axis_line_size)) +
+  theme(axis.line.x = element_line(size = axis_line_size)) +
+  theme(axis.ticks = element_line(size = axis_tick_size))+
+  theme(axis.ticks.length = unit(axis_tick_lengths, 'in'))+
+  theme(axis.text = element_text(size = text_size_axis_tick_labels))+
+  theme(legend.position = "none")   
+p2_SIM
+
+# Equal conjugation rates data --------------------------------------------
+dat <- read.csv("ODE_data/T1.csv")
+T_1 = (dat$time[dat$Transconjugant>1]/3600)[1]
+dat2 <- dat %>%
+  filter(row_number() %% num_of_rows_to_skip == 1)
+dat1 <- dat2 %>%
+  select(-PlasmidFreeDonor, -Total) %>%
+  gather(Cell.type, Density, 2:4)
+dat1$time <- dat1$time/3600
+
+# a. Density plot ------------------------------------------------------------
+p1 <- ggplot(data = dat1 %>% filter(time < Incubation_time), aes(x = time, y = Density, color = Cell.type)) +
+  geom_line(size = density_line_size, linetype = density_linetype, position=position_dodge(width = density_line_dodge)) +
+  scale_color_manual(values = density_cell_colors) +
+  scale_x_continuous(limits = c(x_axis_min, x_axis_max), breaks = x_axis_breaks)+
+  scale_y_log10(limits = c(density_y_axis_min, density_y_axis_max), breaks = scales::trans_breaks("log10", function(x) 10^x, n = density_y_axis_number_of_ticks), labels = scales::trans_format("log10", scales::math_format(10^.x))) +
+  theme(axis.title.y = element_blank()) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.line.y = element_line(size = axis_line_size)) +
+  theme(axis.line.x = element_line(size = axis_line_size)) +
+  theme(axis.ticks = element_line(size = axis_tick_size))+
+  theme(axis.ticks.length = unit(axis_tick_lengths, 'in'))+
+  theme(axis.text = element_blank())+
+  theme(legend.position = "none")   
+p1
+
+# b. SIM estimate plot ------------------------------------------------------------
+p1_SIM <- ggplot(data = dat1 %>% filter(time < Incubation_time & time > T_1), aes(x = time, y = SIM)) +
+  geom_hline(yintercept = Set_conjugation_rate, color = SIM_set_conjugation_rate_color, linetype = SIM_set_conjugation_rate_linetype, size = SIM_set_conjugation_rate_line_size) +
+  geom_line(size = SIM_line_size, color = SIM_line_color) +
+  scale_x_continuous(limits = c(x_axis_min, x_axis_max), breaks = x_axis_breaks)+
+  scale_y_log10(limits=c(SIM_y_axis_min, SIM_y_axis_max), breaks = scales::trans_breaks("log10", function(x) 10^x, n = SIM_y_axis_number_of_ticks), labels = scales::trans_format("log10", scales::math_format(10^.x))) +
+  theme(axis.title.y = element_blank()) +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title = element_text(size = text_size_axis_title)) +
+  theme(axis.line.y = element_line(size = axis_line_size)) +
+  theme(axis.line.x = element_line(size = axis_line_size)) +
+  theme(axis.ticks = element_line(size = axis_tick_size))+
+  theme(axis.ticks.length = unit(axis_tick_lengths, 'in'))+
+  theme(axis.text.y = element_blank())+
+  theme(axis.text.x = element_text(size = text_size_axis_tick_labels))+
+  theme(legend.position = "none")   
+p1_SIM
+
+
+
+# Fix plot size ------------------------------------------------------------
+Figp1_fixed <- set_panel_size(p1, width  = unit(plot_width, "in"), height = unit(density_height, "in"))
+Figp2_fixed <- set_panel_size(p2, width  = unit(plot_width, "in"), height = unit(density_height, "in"))
+Figp1_SIM_fixed <- set_panel_size(p1_SIM, width  = unit(plot_width, "in"), height = unit(SIM_height, "in"))
+Figp2_SIM_fixed <- set_panel_size(p2_SIM, width  = unit(plot_width, "in"), height = unit(SIM_height, "in"))
+
+# Fig assemble ------------------------------------------------------------
+FigAssemble1 = plot_grid(Figp2_fixed, Figp2_SIM_fixed, ncol = 1, align = 'v', axis = 't',
+                        rel_heights = c(density_height/(density_height + SIM_height), SIM_height/(density_height + SIM_height)))
+FigAssemble2 = plot_grid(Figp1_fixed, Figp1_SIM_fixed, ncol = 1, align = 'v',
+                        rel_heights = c(density_height/(density_height + SIM_height), SIM_height/(density_height + SIM_height)))
+FigAssemble = plot_grid(FigAssemble1, FigAssemble2, ncol = 2, align = 'v', labels = c("b", "c"), label_size = Figure_label_size)
+x.grob <- textGrob(x_axis_label, gp=gpar(fontsize=text_size_axis_title))
+Figure <- grid.arrange(arrangeGrob(FigAssemble, bottom = x.grob))
+save_plot("FigureIntro.pdf", plot = Figure, base_width = Figure_width, base_height = Figure_height)
+
+
+# Extras------------------------------------------------------------
+# line_1 <- 'Cell density'
+# line_2 <- expression(paste("(CFU ", 'ml'^-1, ")"))
+# FigTop <- ggdraw(Figp2_fixed) + 
+#   draw_label(line_1, x = 0.04, y = 0.5, size = text_size_axis_title, angle = 90) + # use relative coordinates for positioning
+#   draw_label(line_2, x = 0.12, y = 0.5, size = text_size_axis_title, angle = 90)
+# line_1 <- 'SIM estimate'
+# line_2 <- ''
+# FigBottom <- ggdraw(Figp2_SIM_fixed) + 
+#   draw_label(line_1, x = 0.08, y = 0.6, size = text_size_axis_title, angle = 90) + # use relative coordinates for positioning
+#   draw_label(line_2, x = 0.12, y = 0.5, size = text_size_axis_title, angle = 90)
+# 
+# FigTop_fixed <- set_panel_size(FigTop, width  = unit(plot_width + .9, "in"), height = unit(density_height, "in"))
+# FigBottom_fixed <- set_panel_size(FigBottom, width  = unit(plot_width + .9, "in"), height = unit(density_height, "in"))
+# 
+# 
+# 
+# FigAssemble1 = plot_grid(FigTop, FigBottom, ncol = 1, align = 'v', axis = 'tblr',
+#                          rel_heights = c(density_height/(density_height + SIM_height), SIM_height/(density_height + SIM_height)))
+# 
+# # FigAssemble1 = plot_grid(Figp2_fixed, Figp2_SIM_fixed, ncol = 1, align = 'v',
+# #                         rel_heights = c(density_height/(density_height + SIM_height), SIM_height/(density_height + SIM_height)))
+# FigAssemble2 = plot_grid(Figp1_fixed, Figp1_SIM_fixed, ncol = 1, align = 'v',
+#                          rel_heights = c(density_height/(density_height + SIM_height), SIM_height/(density_height + SIM_height)))
+# FigAssemble = plot_grid(FigAssemble1, FigAssemble2, ncol = 2, align = 'v', labels = c('a', 'b'), 
+#                         label_size = Figure_part_labels_size, rel_widths = c(1, 0.7))
+# x.grob <- textGrob(x_axis_label, gp=gpar(fontsize=text_size_axis_title))
+# Figure <- grid.arrange(arrangeGrob(FigAssemble, bottom = x.grob))
+# save_plot("FigureIntro.pdf", plot = Figure, base_width = 3.25, base_height = Figure_height)
+# 
+# 

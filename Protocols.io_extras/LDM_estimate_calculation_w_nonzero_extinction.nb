@@ -1,0 +1,159 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5673,        151]
+NotebookOptionsPosition[      4852,        127]
+NotebookOutlinePosition[      5244,        143]
+CellTagsIndexPosition[      5201,        140]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+The following function gives the value for the donor conjugation rate \
+estimate corrected for a transconjugant cell extinction probability of pi:\
+\>", "Section",
+ CellChangeTimes->{{3.8506061255170383`*^9, 3.850606209278762*^9}, {
+   3.850606308267995*^9, 3.850606308638969*^9}, 
+   3.850607457130612*^9},ExpressionUUID->"fd311509-9b2a-4459-87e1-\
+b6be6aee52f1"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"CorrectedTransferEstimate", "[", 
+    RowBox[{
+    "D0_", ",", "R0_", ",", "\[Psi]D_", ",", "\[Psi]R_", ",", "\[Psi]T_", ",",
+      "f_", ",", "t_", ",", "pi_", ",", "Pnt_"}], "]"}], ":=", 
+   RowBox[{"f", "*", 
+    FractionBox[
+     RowBox[{
+      RowBox[{"-", 
+       RowBox[{"Log", "[", "Pnt", "]"}]}], "*", 
+      RowBox[{"(", 
+       RowBox[{"\[Psi]D", "+", "\[Psi]R"}], ")"}]}], 
+     RowBox[{"D0", "*", "R0"}]], "*", 
+    RowBox[{"(", 
+     RowBox[{"1", "/", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"\[Psi]D", "+", "\[Psi]R"}], ")"}], "*", "t"}]], "*", 
+         RowBox[{"Hypergeometric2F1", "[", 
+          RowBox[{"1", ",", 
+           FractionBox[
+            RowBox[{"\[Psi]D", "+", "\[Psi]R"}], "\[Psi]T"], ",", 
+           RowBox[{"1", "+", 
+            FractionBox[
+             RowBox[{"\[Psi]D", "+", "\[Psi]R"}], "\[Psi]T"]}], ",", 
+           FractionBox["pi", 
+            RowBox[{"pi", "-", "1"}]]}], "]"}]}], "-", 
+        RowBox[{"Hypergeometric2F1", "[", 
+         RowBox[{"1", ",", 
+          FractionBox[
+           RowBox[{"\[Psi]D", "+", "\[Psi]R"}], "\[Psi]T"], ",", 
+          RowBox[{"1", "+", 
+           FractionBox[
+            RowBox[{"\[Psi]D", "+", "\[Psi]R"}], "\[Psi]T"]}], ",", 
+          RowBox[{
+           FractionBox["pi", 
+            RowBox[{"pi", "-", "1"}]], "*", 
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{
+             RowBox[{"-", "\[Psi]T"}], "*", "t"}]]}]}], "]"}]}], ")"}]}], 
+     ")"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.850604896514358*^9, 3.8506053395501127`*^9}, {
+   3.850605419744526*^9, 3.850605420790737*^9}, 3.8506055619656887`*^9, {
+   3.850605892789167*^9, 3.850605912186762*^9}, {3.8506061201111517`*^9, 
+   3.850606122341844*^9}, {3.861117118408626*^9, 3.861117161288617*^9}, {
+   3.861118310285584*^9, 3.861118311774116*^9}},
+ FontSize->24,
+ CellLabel->"In[6]:=",ExpressionUUID->"d61598fb-5133-487b-80c1-675ef84f0973"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Enter the appropriate arguments \[LineSeparator](Pnt is the fraction of \
+non-turbid wells in the LDM assay) to get the adjusted estimate (the rest of \
+the arguments should be clear from conventions in the paper):\
+\>", "Section",
+ CellChangeTimes->{{3.8506061255170383`*^9, 3.8506063038716917`*^9}, 
+   3.850606378533633*^9, {3.850607479123081*^9, 3.850607491951333*^9}, {
+   3.860154228063562*^9, 3.860154229052071*^9}, 
+   3.8611183514893417`*^9},ExpressionUUID->"d4ec9aca-6a52-438a-805f-\
+b0b18559b2d5"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"CorrectedTransferEstimate", "[", 
+  RowBox[{
+  "20000", ",", "11000", ",", "2", ",", "1.5", ",", "1.4", ",", "10", ",", 
+   "4", ",", "0.9", ",", "0.7"}], "]"}]], "Input",
+ CellChangeTimes->{{3.850606314636639*^9, 3.850606348972781*^9}, {
+  3.850610725847383*^9, 3.8506107388712883`*^9}, {3.850920651755156*^9, 
+  3.850920708651528*^9}, {3.8509207386647577`*^9, 3.850921375786515*^9}, {
+  3.8611183228213263`*^9, 3.861118346784399*^9}},
+ FontSize->24,
+ CellLabel->"In[7]:=",ExpressionUUID->"982e4bbe-1e5a-4a59-9635-9226e6c05194"],
+
+Cell[BoxData["3.163391991434979`*^-13"], "Output",
+ CellChangeTimes->{{3.8506063531418123`*^9, 3.85060636531136*^9}, 
+   3.85061074760495*^9, {3.850920733408081*^9, 3.850920871499164*^9}, 
+   3.850920911339838*^9, 3.8509209583024406`*^9, 3.850921002577012*^9, 
+   3.850921043075424*^9, {3.850921080778433*^9, 3.8509211049995403`*^9}, 
+   3.850921151232491*^9, 3.850921199366561*^9, 3.850921247997452*^9, 
+   3.850921290184766*^9, 3.850921326705867*^9, 3.8509213642791243`*^9, 
+   3.860154234351009*^9, {3.861118347429192*^9, 3.8611183535134287`*^9}},
+ FontSize->24,
+ CellLabel->"Out[7]=",ExpressionUUID->"92a3a414-b08b-4d21-b3e3-28399dd1f741"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1374, 847},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (June 19, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"942b291e-1cb0-49df-91b6-888123d357d0"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 374, 7, 105, "Section",ExpressionUUID->"fd311509-9b2a-4459-87e1-b6be6aee52f1"],
+Cell[957, 31, 2088, 53, 265, "Input",ExpressionUUID->"d61598fb-5133-487b-80c1-675ef84f0973"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3082, 89, 518, 9, 143, "Section",ExpressionUUID->"d4ec9aca-6a52-438a-805f-b0b18559b2d5"],
+Cell[CellGroupData[{
+Cell[3625, 102, 553, 10, 44, "Input",ExpressionUUID->"982e4bbe-1e5a-4a59-9635-9226e6c05194"],
+Cell[4181, 114, 643, 9, 78, "Output",ExpressionUUID->"92a3a414-b08b-4d21-b3e3-28399dd1f741"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

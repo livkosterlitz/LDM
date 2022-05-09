@@ -1,0 +1,26 @@
+{
+    "id": "80D96745",
+    "path": "~/Dropbox/Pop3/Figures/Fig6/Fig6.R",
+    "project_path": "Fig6.R",
+    "type": "r_source",
+    "hash": "1261974742",
+    "contents": "",
+    "dirty": false,
+    "created": 1643312801353.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "60,7",
+        "scrollLine": "60"
+    },
+    "folds": "0|16|9|0|\n10|33|30|0|\n31|25|33|0|\n",
+    "lastKnownWriteTime": 1651940390,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1651940390479,
+    "read_only": false,
+    "read_only_alternatives": []
+}

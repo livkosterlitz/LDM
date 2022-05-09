@@ -1,0 +1,26 @@
+{
+    "id": "74C20C44",
+    "path": "~/Dropbox/Pop3/Figures/Fig4/Simulation_functions_parameter_sweep.R",
+    "project_path": "Simulation_functions_parameter_sweep.R",
+    "type": "r_source",
+    "hash": "923511944",
+    "contents": "",
+    "dirty": false,
+    "created": 1651177732243.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "49,50",
+        "scrollLine": "36"
+    },
+    "folds": "89|1|114|0|\n144|1|169|0|\n",
+    "lastKnownWriteTime": 1651178191,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1651178191776,
+    "read_only": false,
+    "read_only_alternatives": []
+}

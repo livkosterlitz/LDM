@@ -16,7 +16,7 @@ Parameter_sweep_load_data <-
       filename <- treatments[[i]][length(treatments[[i]])]
       treatment_names[i] <- strsplit(filename, '_')[[1]][1]}
     for (l in 1:length(csvfileslist)) {
-      csvfileslist[[l]] <- csvfileslist[[l]][-1, ]
+      csvfileslist[[l]] <- csvfileslist[[l]][2:101, ]
       csvfileslist[[l]] <-subset(csvfileslist[[l]], select = select_estimates)
       csvfileslist[[l]]['LDM'][csvfileslist[[l]]['LDM'] == 0] <-new_zero_value
       csvfileslist[[l]]['SIM'][csvfileslist[[l]]['SIM'] == 0] <-new_zero_value
@@ -47,7 +47,7 @@ Parameter_sweep_mean_calculation <-
       treatment_names[i] <- strsplit(filename,'_')[[1]][1]}
     meantable = data.frame()
     for (l in 1:length(csvfileslist)) {
-      csvfileslist[[l]] <- csvfileslist[[l]][-1,]
+      csvfileslist[[l]] <- csvfileslist[[l]][2:101,]
       csvfileslist[[l]] <- subset(csvfileslist[[l]], select = select_estimates)
       csvfileslist[[l]][parameter_for_xaxis_values] <- rep(treatment_description[parameter_for_xaxis_values][treatment_description['Treatment_ID'] == treatment_names[l]], nrow(csvfileslist[[l]]))
       csvfileslist[[l]] <- pivot_longer(csvfileslist[[l]], cols=select_estimates , names_to = "estimate", values_to = "conjugationestimate")
@@ -164,6 +164,7 @@ p<-ggplot(sim_data_frame %>% filter(parameter_xaxis != 1e-6), aes(x=parameter_xa
   scale_y_log10(limits = c(y_axis_min, y_axis_max), breaks = trans_breaks("log10", function(x) 10^x, n = y_axis_number_of_ticks), labels = trans_format("log10", math_format(10^.x)))+
   scale_fill_manual(values = color_fill)+
   scale_color_manual(values = color, guide = "none")+
-  theme(strip.text = element_blank())
+  theme(strip.background = element_blank())+
+  theme(strip.text = element_text(size = text_size_axis_tick_labels))
 return(p)
 }

@@ -1,0 +1,26 @@
+{
+    "id": "F5E09ADE",
+    "path": "~/Dropbox/Pop3/Figures/SI_Fig6/SI_Fig6.R",
+    "project_path": "SI_Fig6.R",
+    "type": "r_source",
+    "hash": "3100707892",
+    "contents": "",
+    "dirty": false,
+    "created": 1643155971855.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "234,0",
+        "scrollLine": "195"
+    },
+    "folds": "0|16|12|26|\n13|17|16|0|\n17|33|35|0|\n47|29|58|0|\n59|25|68|0|\n217|30|234|0|\n",
+    "lastKnownWriteTime": 1643329282,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1643329282436,
+    "read_only": false,
+    "read_only_alternatives": []
+}
