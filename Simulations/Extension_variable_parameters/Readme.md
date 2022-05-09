@@ -1,4 +1,4 @@
-These programs alter the main simulation framework to add in one additional source of stochasticity: variation in the user-specified parameter values for growth and transfer rates. Below highlights within the workflow what is modified and the changes needed by the user. The output files from [Step 3](#Step-3) are in the [Step3_output folder](https://github.com/livkosterlitz/LDM/tree/main/Simulations/Extension_variable_parameters/Step3_output). 
+These programs alter the main simulation framework to add in one additional source of stochasticity: variation in the user-specified parameter values for growth and transfer rates. Below highlights within the workflow what is modified and the changes needed by the user. The output files from Step 3 are in the [Step3_output folder](https://github.com/livkosterlitz/LDM/tree/main/Simulations/Extension_variable_parameters/Step3_output). 
 
 # Program Workflow
 
