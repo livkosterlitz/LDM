@@ -12,7 +12,7 @@ The [Simulations folder](https://github.com/livkosterlitz/LDM/tree/main/Simulati
 The [GitHub appendix](https://github.com/livkosterlitz/LDM/tree/main/Github_Appendix) is available as a PDF file and contains the additional derivations mentioned in the supplemental materials. 
 
 ## **LDM Protocol**  
-A detailed protocol on how to execute the LDM approach is available on [protocols.io](https://dx.doi.org/10.17504/protocols.io.e6nvwk812vmk/v3).
+The recommended version (i.e., the most up-to-date) of the LDM protocol is available on [protocols.io](https://dx.doi.org/10.17504/protocols.io.e6nvwk812vmk/v3).
 
 
 
