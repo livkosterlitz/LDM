@@ -12,7 +12,7 @@ The [Simulations folder](https://github.com/livkosterlitz/LDM/tree/main/Simulati
 The [GitHub appendix](https://github.com/livkosterlitz/LDM/tree/main/Github_Appendix) is available as a PDF file and contains the additional derivations mentioned in the supplemental materials. 
 
 ## **LDM Protocol**  
-A detailed protocol on how to execute the LDM approach is available on [protocols.io](dx.doi.org/10.17504/protocols.io.e6nvwk812vmk/v3).
+A detailed protocol on how to execute the LDM approach is available on [protocols.io](https://www.protocols.io/view/ldm-protocol-for-estimating-plasmid-conjugation-ra-e6nvwk812vmk/v3).
 
 
 
